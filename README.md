@@ -18,7 +18,7 @@ Sometimes, the map may not load on the first attempt. If this happens, please re
 ### [Japan](https://tjmsy.github.io/orilibre/japan/index.html)
 - **データソース**: [OpenFreeMap](https://openfreemap.org/)、[国土地理院ベクトルタイル](https://maps.gsi.go.jp/development/vt.html)、[標高タイル(国土地理院)](https://maps.gsi.go.jp/development/ichiran.html#dem)、[農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)  
 - **特徴**: 国土地理院のデータソースからの建物・等高線、農林水産省のデータソースからの耕作地、OpenStreetMap(OpenFreeMap)のデータソースからの道路・森林等のハイブリッドマップ。  
-- **印刷・再配布**: 印刷・再配布: 可能です。その場合は出典表示を含めるようにしてください（2015年1月時点での情報です。利用する際は、出典元の最新の利用規約をご確認ください）。
+- **印刷・再配布**: 可能です。その場合は出典表示を含めるようにしてください（2015年1月時点での情報です。利用する際は、出典元の最新の利用規約をご確認ください）。
 
 
 ### [Global (with Contour)](https://tjmsy.github.io/orilibre/global/index.html)
