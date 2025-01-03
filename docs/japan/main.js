@@ -6,12 +6,12 @@ import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-t
 async function main() {
   try {
     const demSource = await new mlcontour.DemSource({
-      url: "https://tjmsy.azurewebsites.net/api/terrain-rgb/{z}/{x}/{y}.webp",
+      url: "https://gsj-seamless.jp/seamless/elev/php/terrainRGB.php?url=https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png",
       encoding: "mapbox",
       maxzoom: 14,
       worker: true,
       cacheSize: 100,
-      timeoutMs: 10000,
+      timeoutMs: 20000,
     });
     demSource.setupMaplibre(maplibregl);
 
@@ -23,13 +23,13 @@ async function main() {
 
     const map = await isomizer(
       mapConfig,
-      "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles/projects/ofm-isom/project-config.yml"
+      "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles/projects/isomized-japan/project-config.yml"
     );
 
     map.addSource("terrain-source", {
-      type: 'raster-dem',
+      type: "raster-dem",
       tiles: [demSource.sharedDemProtocolUrl],
-      tileSize: 256
+      tileSize: 256,
     });
     return map;
   } catch (error) {
@@ -42,6 +42,12 @@ const map = await main();
 map.addControl(new ScaleRatioControl(), "top-left");
 map.addControl(new maplibregl.FullscreenControl(), "top-right");
 map.addControl(
+  new MaplibreExportControl.MaplibreExportControl({
+    PrintableArea: true,
+  }),
+  "top-right"
+);
+map.addControl(
   new MagneticNorthControl({
     apiProxyUrl:
       "https://apiproxymagneticnorth.azurewebsites.net/api/getMagneticHeading",
@@ -52,7 +58,7 @@ map.addControl(new GPSTrackControl(), "top-right");
 map.addControl(
   new maplibregl.TerrainControl({
     source: "terrain-source",
-    exaggeration: 1.5,
+    exaggeration: 1.2,
   })
 );
 map.addControl(new maplibregl.NavigationControl(), "bottom-right");

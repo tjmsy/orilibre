@@ -11,7 +11,7 @@ async function main() {
       zoom: 1,
     };
 
-    const map = await isomizer(mapConfig, "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles/projects/ofm-isom-without-contour/project-config.yml");
+    const map = await isomizer(mapConfig, "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles/projects/global-without-contour/project-config.yml");
     return map;
   } catch (error) {
     console.error("Error initializing map:", error);
