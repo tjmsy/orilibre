@@ -17,8 +17,8 @@ async function main() {
 
     const mapConfig = {
       container: "map",
-      center: [0, 0],
-      zoom: 1,
+      center: [35.8855, 139.3127],
+      zoom: 15,
     };
 
     const map = await isomizer(
