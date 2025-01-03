@@ -21,6 +21,13 @@ async function main() {
 const map = await main();
 
 map.addControl(new maplibregl.FullscreenControl(), 'top-right');
+map.addControl(new maplibregl.GeolocateControl({
+  positionOptions: {
+    enableHighAccuracy: true
+  },
+  trackUserLocation: true,
+  showUserHeading: true
+}), 'top-right');
 map.addControl(
   new MaplibreExportControl.MaplibreExportControl({
     Crosshair: true,

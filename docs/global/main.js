@@ -41,6 +41,13 @@ const map = await main();
 
 map.addControl(new ScaleRatioControl(), "top-left");
 map.addControl(new maplibregl.FullscreenControl(), "top-right");
+map.addControl(new maplibregl.GeolocateControl({
+  positionOptions: {
+    enableHighAccuracy: true
+  },
+  trackUserLocation: true,
+  showUserHeading: true
+}), 'top-right');
 map.addControl(
   new MagneticNorthControl({
     apiProxyUrl:
