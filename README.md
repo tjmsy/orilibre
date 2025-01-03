@@ -9,7 +9,7 @@ For more information:
 - [ISOMizer's GitHub repo](https://github.com/tjmsy/maplibre-gl-isomizer)  
 - [ISOMizer Projectfiles' GitHub repo](https://github.com/tjmsy/isomizer-projectfiles)
 
-## Available Maps
+## Maps
 **⚠️ 注意 / Note**  
 初回起動時に地図が表示されないことがあります。その場合は、画面をリロードしてください。  
 Sometimes, the map may not load on the first attempt. If this happens, please refresh the page.  
