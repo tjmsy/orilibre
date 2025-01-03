@@ -5,7 +5,7 @@ Orienteering Maps on MapLibre GL JS
 These maps are created using [ISOMizer Studio](https://tjmsy.github.io/maplibre-gl-isomizer-studio/),  
 a custom style generation tool for orienteering maps.  
 
-For more information:  
+For more information (currently under construction):  
 - [ISOMizer's GitHub repo](https://github.com/tjmsy/maplibre-gl-isomizer)  
 - [ISOMizer Projectfiles' GitHub repo](https://github.com/tjmsy/isomizer-projectfiles)
 
