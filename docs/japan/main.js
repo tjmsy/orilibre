@@ -17,7 +17,7 @@ async function main() {
 
     const mapConfig = {
       container: "map",
-      center: [35.8855, 139.3127],
+      center: [139.3127, 35.8855],
       zoom: 15,
     };
 
