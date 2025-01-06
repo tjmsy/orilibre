@@ -61,7 +61,7 @@ map.addControl(
   }),
   "top-right"
 );
-map.addControl(new GPSTrackControl(), "top-right");
+map.addControl(new GPSTrackControl({isHeartRateWidthEnabled: true}), "top-right");
 map.addControl(
   new maplibregl.TerrainControl({
     source: "terrain-source",
