@@ -26,29 +26,40 @@ async function main() {
 
 const map = await main();
 
-map.addControl(new ScaleRatioControl(), "top-left");
-map.addControl(new maplibregl.FullscreenControl(), "top-right");
-map.addControl(new maplibregl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-right');
-map.addControl(
-  new MaplibreExportControl.MaplibreExportControl({
-    PrintableArea: true,
-  }),
-  "top-right"
-);
-map.addControl(
-  new MagneticNorthControl({
-    apiProxyUrl:
-      "https://apiproxymagneticnorth.azurewebsites.net/api/getMagneticHeading",
-  }),
-  "top-right"
-);
-map.addControl(new GPSTrackControl({isHeartRateWidthEnabled: true}), "top-right");
-map.addControl(new terrainParameterControl(), "top-right");
-map.addControl(new maplibregl.NavigationControl(), "bottom-right");
-map.addControl(new maplibregl.ScaleControl({ unit: "metric" }), "bottom-left");
+map.on("load", () => {
+  map.addControl(new ScaleRatioControl(), "top-left");
+  map.addControl(new maplibregl.FullscreenControl(), "top-right");
+  map.addControl(
+    new maplibregl.GeolocateControl({
+      positionOptions: {
+        enableHighAccuracy: true,
+      },
+      trackUserLocation: true,
+      showUserHeading: true,
+    }),
+    "top-right"
+  );
+  map.addControl(
+    new MaplibreExportControl.MaplibreExportControl({
+      PrintableArea: true,
+    }),
+    "top-right"
+  );
+  map.addControl(
+    new MagneticNorthControl({
+      apiProxyUrl:
+        "https://apiproxymagneticnorth.azurewebsites.net/api/getMagneticHeading",
+    }),
+    "top-right"
+  );
+  map.addControl(
+    new GPSTrackControl({ isHeartRateWidthEnabled: true }),
+    "top-right"
+  );
+  map.addControl(new terrainParameterControl(), "top-right");
+  map.addControl(new maplibregl.NavigationControl(), "bottom-right");
+  map.addControl(
+    new maplibregl.ScaleControl({ unit: "metric" }),
+    "bottom-left"
+  );
+});
