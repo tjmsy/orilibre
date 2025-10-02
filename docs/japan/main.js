@@ -26,6 +26,16 @@ async function main() {
 
 const map = await main();
 
+const demSource = new mlcontour.DemSource({
+  url: "https://gbank.gsj.jp/seamless/elev/terrainRGB/land/{z}/{y}/{x}.png",
+  encoding: "mapbox",
+  minzoom: 0,
+  maxzoom: 19,
+  worker: true,
+  cacheSize: 100,
+  timeoutMs: 30_000,
+});
+
 map.addControl(new ScaleRatioControl(), "top-left");
 map.addControl(new maplibregl.FullscreenControl(), "top-right");
 map.addControl(
@@ -55,6 +65,6 @@ map.addControl(
   new GPSTrackControl({ isHeartRateWidthEnabled: true }),
   "top-right"
 );
-map.addControl(new terrainParameterControl(), "top-right");
+map.addControl(new terrainParameterControl(demSource), "top-right");
 map.addControl(new maplibregl.NavigationControl(), "bottom-right");
 map.addControl(new maplibregl.ScaleControl({ unit: "metric" }), "bottom-left");
