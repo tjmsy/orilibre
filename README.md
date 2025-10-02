@@ -11,13 +11,13 @@ Sometimes, the map may not load on the first attempt. If this happens, please re
 
 ## データソース / Data Sources
 
-### Japan Map / 日本地図
+### Japan Map
 - 等高線: [産総研 シームレス標高タイル(陸域統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_land)
 - 水系、道、線路、建物 など: [国土地理院ベクトルタイル](https://maps.gsi.go.jp/development/vt.html)
 - 植生、岩石地、砂地 など:  [OpenFreeMap](https://openfreemap.org/)
 - 耕作地: [農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)
 
-### Global Map / 世界地図
+### Global Map
 - Contour: [GEBCO Grid (via Geological Survey of Japan, AIST)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_gebco)
 - Others: [OpenFreeMap](https://openfreemap.org/) 
 
