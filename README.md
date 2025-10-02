@@ -1,28 +1,42 @@
 # OriLibre
-
 Orienteering Maps on MapLibre GL JS  
 
-## Maps
+## 地図 / Maps
+- [View Japan Map](https://tjmsy.github.io/orilibre/japan/index.html)
+- [View Global Map](https://tjmsy.github.io/orilibre/global/index.html)
+
 **⚠️ 注意 / Note**  
 初回起動時に地図が表示されないことがあります。その場合は、画面をリロードしてください。  
 Sometimes, the map may not load on the first attempt. If this happens, please refresh the page.  
 
+## データソース / Data Sources
 
-### [Japan](https://tjmsy.github.io/orilibre/japan/index.html)
-- **データソース**: [OpenFreeMap](https://openfreemap.org/)、[国土地理院ベクトルタイル](https://maps.gsi.go.jp/development/vt.html)、[産総研 シームレス標高タイル(統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_mixed)、[農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)  
-- **特徴**: 日本国内の表示に特化した複数のデータソースを組み合わせた地図。出典記載のうえで印刷・再配布可能。 
+### Japan Map / 日本地図
+- 等高線: [産総研 シームレス標高タイル(陸域統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_land)
+- 水系、道、線路、建物 など: [国土地理院ベクトルタイル](https://maps.gsi.go.jp/development/vt.html)
+- 植生、岩石地、砂地 など:  [OpenFreeMap](https://openfreemap.org/)
+- 耕作地: [農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)
 
+### Global Map / 世界地図
+- Contour: [GEBCO Grid (via Geological Survey of Japan, AIST)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_gebco)
+- Others: [OpenFreeMap](https://openfreemap.org/) 
 
-### [Global](https://tjmsy.github.io/orilibre/global/index.html)
-- **Data Sources**: [OpenFreeMap](https://openfreemap.org/) and [産総研 シームレス標高タイル(統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_mixed)'s Terrain RGB.  
-- **Features**: Includes global open and redistributable data.  
+## データライセンス / Data Licensing
+本プロジェクトは、オープンかつ再配布可能な地図データのみを利用しています。  
+This project uses only open and redistributable map data.  
 
-## License
-Please refer to the individual data sources for licensing details:  
-- [OpenFreeMap](https://openfreemap.org/)
-- [国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)
-- [産総研地質調査総合センターウェブサイト利用規約](https://www.gsj.jp/license/license.html)
-- [農林水産省筆ポリゴン](https://www.maff.go.jp/j/tokei/porigon/)
+### 印刷や配布を行う場合 / For Printing and Sharing Maps
+OriLibre で生成した地図を印刷・配布する場合は、各データソースの定める出典表示を地図に明記してください。  
+If you print or redistribute maps generated from OriLibre, you must include the proper attributions required by each data source.  
 
-印刷・再配布の際は、出典元の最新の利用規約をご確認ください。  
-Make sure to include proper attribution for all data sources when redistributing maps.
+参考 / References:  
+- [国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)  
+- [産総研地質調査総合センターウェブサイト利用規約](https://www.gsj.jp/license/license.html)  
+- [GEBCO Data License](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#Licensing)  
+- [農林水産省筆ポリゴン](https://www.maff.go.jp/j/tokei/porigon/)  
+- [OpenFreeMap](https://openfreemap.org/)  
+
+## プロジェクトライセンス / Project License
+OriLibre 自体は MIT License の下で提供されています。  
+OriLibre itself is released under the MIT License.  
+詳細は [LICENSE](./LICENSE) を参照してください。
