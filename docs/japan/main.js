@@ -2,7 +2,7 @@ import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer
 import { ScaleRatioControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-scale-ratio@latest/src/maplibre-gl-scale-ratio.js";
 import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-magnetic-north/src/maplibre-gl-magnetic-north.js";
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
-import terrainParameterControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils/src/controls/terrainParameterControl.js";
+import terrainParameterControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@latest/src/controls/terrainParameterControl.js";
 
 async function main() {
   try {
