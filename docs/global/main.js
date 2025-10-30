@@ -2,7 +2,8 @@ import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer
 import { ScaleRatioControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-scale-ratio@latest/src/maplibre-gl-scale-ratio.js";
 import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-magnetic-north/src/maplibre-gl-magnetic-north.js";
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
-import terrainParameterControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@latest/src/controls/terrainParameterControl.js";
+import terrainSwitcher from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@main/src/terrainSwitcher/terrainSwitcher.js";
+import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval/src/maplibre-gl-contour-interval.js";
 
 async function main() {
   try {
@@ -35,6 +36,7 @@ const demSource = new mlcontour.DemSource({
   cacheSize: 100,
   timeoutMs: 30_000,
 });
+demSource.setupMaplibre(maplibregl);
 
 map.addControl(new ScaleRatioControl(), "top-left");
 map.addControl(new maplibregl.FullscreenControl(), "top-right");
@@ -65,6 +67,11 @@ map.addControl(
   new GPSTrackControl({ isHeartRateWidthEnabled: true }),
   "top-right"
 );
-map.addControl(new terrainParameterControl(demSource), "top-right");
+map.addControl(new terrainSwitcher(demSource), "top-right");
+const defaultContourInterval = 5;
+map.addControl(
+  new ContourIntervalControl(demSource, defaultContourInterval),
+  "top-right"
+);
 map.addControl(new maplibregl.NavigationControl(), "bottom-right");
 map.addControl(new maplibregl.ScaleControl({ unit: "metric" }), "bottom-left");
