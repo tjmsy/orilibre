@@ -1,4 +1,4 @@
-import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer@0.3.1/src/isomizer.js";
+import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer@0.3/src/isomizer.js";
 import { ScaleRatioControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-scale-ratio@latest/src/maplibre-gl-scale-ratio.js";
 import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-magnetic-north/src/maplibre-gl-magnetic-north.js";
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
@@ -33,9 +33,36 @@ const demSource = new mlcontour.DemSource({
 demSource.setupMaplibre(maplibregl);
 
 map.on("load", async () => {
+  map.addSource("contour-source", {
+    type: "vector",
+    tiles: [
+      demSource.contourProtocolUrl({
+        thresholds: {
+          5: [2560, 12800],
+          6: [1280, 6400],
+          7: [640, 3200],
+          8: [320, 1600],
+          9: [160, 800],
+          10: [80, 400],
+          11: [40, 200],
+          12: [20, 100],
+          13: [10, 50],
+          14: [5, 25],
+        },
+        contourLayer: "contours",
+        elevationKey: "ele",
+        levelKey: "level",
+        extent: 4096,
+        buffer: 1,
+      }),
+    ],
+    maxzoom: 14,
+    attribution: "<a href='https://tiles.gsj.jp/tiles/elev/tiles.html#h_gebco' target='_blank'>GEBCO Grid (via Geological Survey of Japan, AIST)</a>",
+  });
+
   await isomizer(
     map,
-    "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles/projects/global/project-config.yml"
+    "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.3/projects/global/project-config.yml"
   );
 
   map.addControl(new ScaleRatioControl(), "top-left");
