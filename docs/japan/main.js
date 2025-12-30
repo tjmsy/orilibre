@@ -3,7 +3,7 @@ import { ScaleRatioControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl
 import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-magnetic-north/src/maplibre-gl-magnetic-north.js";
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
 import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-geojson-export/src/maplibre-gl-geojson-export.js";
-import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle/src/maplibre-gl-terrain-3d-toggle.js";
+import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval/src/maplibre-gl-contour-interval.js";
 
 const map = new maplibregl.Map({
@@ -21,18 +21,18 @@ const map = new maplibregl.Map({
   localIdeographFontFamily: ["sans-serif"],
 });
 
-const demSource = new mlcontour.DemSource({
-  url: "https://gbank.gsj.jp/seamless/elev2/terrainRGB/mixed/{z}/{x}/{y}.webp",
-  encoding: "mapbox",
-  minzoom: 0,
-  maxzoom: 17,
-  worker: true,
-  cacheSize: 100,
-  timeoutMs: 30_000,
-});
-demSource.setupMaplibre(maplibregl);
-
 map.on("load", async () => {
+  const demSource = new mlcontour.DemSource({
+    url: "https://gbank.gsj.jp/seamless/elev2/mixed/{z}/{x}/{y}.webp",
+    encoding: "numpng",
+    minzoom: 0,
+    maxzoom: 17,
+    worker: true,
+    cacheSize: 100,
+    timeoutMs: 30_000,
+  });
+  demSource.setupMaplibre(maplibregl);
+
   map.addSource("contour-source", {
     type: "vector",
     tiles: [
@@ -57,8 +57,39 @@ map.on("load", async () => {
       }),
     ],
     maxzoom: 17,
-    attribution: "<a href='https://tiles.gsj.jp/tiles/elev2/index.html#h_mixed' target='_blank'>産総研 シームレス標高タイル(統合DEM)</a>"
+    attribution:
+      "<a href='https://tiles.gsj.jp/tiles/elev2/index.html#h_mixed' target='_blank'>産総研 シームレス標高タイル(統合DEM)</a>",
   });
+
+  map.addSource("terrain", {
+    type: "raster-dem",
+    tiles: [
+      "https://gbank.gsj.jp/seamless/elev2/terrainRGB/mixed/{z}/{x}/{y}.webp",
+    ],
+    tileSize: 512,
+    maxzoom: 12,
+  });
+
+  const sky = {
+    "sky-color": "#199EF3",
+    "sky-horizon-blend": 0.5,
+    "horizon-color": "#ffffff",
+    "horizon-fog-blend": 0.5,
+    "fog-color": "#0000ff",
+    "fog-ground-blend": 0.8,
+    "atmosphere-blend": [
+      "interpolate",
+      ["linear"],
+      ["zoom"],
+      0,
+      1,
+      10,
+      1,
+      12,
+      0,
+    ],
+  };
+  map.setSky(sky);
 
   await isomizer(
     map,
@@ -97,7 +128,7 @@ map.on("load", async () => {
     new GPSTrackControl({ isHeartRateWidthEnabled: true }),
     "top-right"
   );
-  map.addControl(new Terrain3dToggle(demSource), "top-right");
+  map.addControl(new Terrain3dToggle({ sourceName: "terrain" }), "top-right");
   const defaultContourInterval = 5;
   map.addControl(
     new ContourIntervalControl(demSource, defaultContourInterval),
