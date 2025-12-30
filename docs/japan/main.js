@@ -26,7 +26,7 @@ map.on("load", async () => {
     url: "https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png",
     encoding: "numpng",
     minzoom: 0,
-    maxzoom: 17,
+    maxzoom: 15,
     worker: true,
     cacheSize: 100,
     timeoutMs: 30_000,
@@ -56,9 +56,9 @@ map.on("load", async () => {
         buffer: 1,
       }),
     ],
-    maxzoom: 17,
+    maxzoom: 15,
     attribution:
-      "<a href='https://tiles.gsj.jp/tiles/elev2/index.html#h_mixed' target='_blank'>産総研 シームレス標高タイル(統合DEM)</a>",
+      "<a href='https://tiles.gsj.jp/tiles/elev/tiles.html#mixed' target='_blank'>産総研 シームレス標高タイル(統合DEM)</a>",
   });
 
   map.addSource("terrain", {
@@ -66,7 +66,7 @@ map.on("load", async () => {
     tiles: [
       "https://gbank.gsj.jp/seamless/elev/terrainRGB/mixed/{z}/{y}/{x}.png",
     ],
-    tileSize: 512,
+    tileSize: 256,
     maxzoom: 12,
   });
 
