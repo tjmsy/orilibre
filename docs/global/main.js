@@ -56,7 +56,7 @@ map.on("load", async () => {
         buffer: 1,
       }),
     ],
-    maxzoom: 9,
+    maxzoom: 14,
     attribution:
       "<a href='https://tiles.gsj.jp/tiles/elev/tiles.html#mixed' target='_blank'>産総研 シームレス標高タイル(統合DEM)</a>",
   });
@@ -67,7 +67,7 @@ map.on("load", async () => {
       "https://gbank.gsj.jp/seamless/elev/terrainRGB/mixed/{z}/{y}/{x}.png",
     ],
     tileSize: 256,
-    maxzoom: 12,
+    maxzoom: 9,
   });
 
   const sky = {
