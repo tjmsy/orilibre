@@ -23,7 +23,7 @@ const map = new maplibregl.Map({
 
 map.on("load", async () => {
   const demSource = new mlcontour.DemSource({
-    url: "https://gbank.gsj.jp/seamless/elev2/mixed/{z}/{x}/{y}.webp",
+    url: "https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png",
     encoding: "numpng",
     minzoom: 0,
     maxzoom: 17,
@@ -64,7 +64,7 @@ map.on("load", async () => {
   map.addSource("terrain", {
     type: "raster-dem",
     tiles: [
-      "https://gbank.gsj.jp/seamless/elev2/terrainRGB/mixed/{z}/{x}/{y}.webp",
+      "https://gbank.gsj.jp/seamless/elev/terrainRGB/mixed/{z}/{y}/{x}.png",
     ],
     tileSize: 512,
     maxzoom: 12,
