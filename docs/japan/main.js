@@ -6,13 +6,10 @@ import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-
 import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval/src/maplibre-gl-contour-interval.js";
 
-function getProjectConfigUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get("project");
-}
+const query = new URLSearchParams(window.location.search);
 
 const projectConfigUrl =
-  getProjectConfigUrl() ??
+  query.get("project") ??
   "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.3/projects/isomized-japan/project-config.yml";
 
 const map = new maplibregl.Map({
@@ -134,7 +131,12 @@ map.on("load", async () => {
     new GPSTrackControl({ isHeartRateWidthEnabled: true }),
     "top-right"
   );
-  map.addControl(new Terrain3dToggle({ sourceName: "terrain" }), "top-right");
+
+  const initialTerrain = query.get("terrain") === "1";
+  map.addControl(
+    new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
+    "top-right"
+  );
   const defaultContourInterval = 5;
   map.addControl(
     new ContourIntervalControl(demSource, defaultContourInterval),
