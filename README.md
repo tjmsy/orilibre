@@ -5,10 +5,6 @@ Orienteering Maps on MapLibre GL JS
 - [View Japan Map](https://tjmsy.github.io/orilibre/japan/index.html)
 - [View Global Map](https://tjmsy.github.io/orilibre/global/index.html)
 
-**⚠️ 注意 / Note**  
-初回起動時に地図が表示されないことがあります。その場合は、画面をリロードしてください。  
-Sometimes, the map may not load on the first attempt. If this happens, please refresh the page.  
-
 ## データソース / Data Sources
 
 ### Japan Map
@@ -18,7 +14,7 @@ Sometimes, the map may not load on the first attempt. If this happens, please re
 - 耕作地: [農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)
 
 ### Global Map
-- Contour: [GEBCO Grid (via Geological Survey of Japan, AIST)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_gebco)
+- Contour: [産総研 シームレス標高タイル(陸域統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_land)
 - Others: [OpenFreeMap](https://openfreemap.org/) 
 
 ## データライセンス / Data Licensing

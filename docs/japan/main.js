@@ -6,6 +6,15 @@ import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-
 import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval/src/maplibre-gl-contour-interval.js";
 
+function getProjectConfigUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("project");
+}
+
+const projectConfigUrl =
+  getProjectConfigUrl() ??
+  "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.3/projects/isomized-japan/project-config.yml";
+
 const map = new maplibregl.Map({
   container: "map",
   style: {
@@ -23,7 +32,7 @@ const map = new maplibregl.Map({
 
 map.on("load", async () => {
   const demSource = new mlcontour.DemSource({
-    url: "https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png",
+    url: "https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png",
     encoding: "numpng",
     minzoom: 0,
     maxzoom: 15,
@@ -58,16 +67,16 @@ map.on("load", async () => {
     ],
     maxzoom: 15,
     attribution:
-      "<a href='https://tiles.gsj.jp/tiles/elev/tiles.html#mixed' target='_blank'>産総研 シームレス標高タイル(統合DEM)</a>",
+      "<a href='https://tiles.gsj.jp/tiles/elev/tiles.html#land' target='_blank'>産総研 シームレス標高タイル(陸域統合DEM)</a>",
   });
 
   map.addSource("terrain", {
     type: "raster-dem",
     tiles: [
-      "https://gbank.gsj.jp/seamless/elev/terrainRGB/mixed/{z}/{y}/{x}.png",
+      "https://gbank.gsj.jp/seamless/elev/terrainRGB/land/{z}/{y}/{x}.png",
     ],
     tileSize: 256,
-    maxzoom: 12,
+    maxzoom: 15,
   });
 
   const sky = {
@@ -91,10 +100,7 @@ map.on("load", async () => {
   };
   map.setSky(sky);
 
-  await isomizer(
-    map,
-    "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.3/projects/isomized-japan/project-config.yml"
-  );
+  await isomizer(map, projectConfigUrl);
 
   map.addControl(new ScaleRatioControl(), "top-left");
   map.addControl(new maplibregl.FullscreenControl(), "top-right");
