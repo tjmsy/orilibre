@@ -24,7 +24,7 @@ const map = new maplibregl.Map({
   zoom: 1,
   maxPitch: 80,
   hash: true,
-  localIdeographFontFamily: ["sans-serif"],
+  localIdeographFontFamily: "sans-serif",
 });
 
 map.on("load", async () => {
