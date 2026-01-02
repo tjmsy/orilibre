@@ -4,7 +4,7 @@ import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
 import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-geojson-export/src/maplibre-gl-geojson-export.js";
 import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
-import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval/src/maplibre-gl-contour-interval.js";
+import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval@0.1/src/maplibre-gl-contour-interval.js";
 
 const query = new URLSearchParams(window.location.search);
 
@@ -43,13 +43,7 @@ map.on("load", async () => {
     type: "vector",
     tiles: [
       demSource.contourProtocolUrl({
-        thresholds: {
-          6: [1280, 6400],
-          8: [320, 1600],
-          10: [80, 400],
-          12: [20, 100],
-          14: [5, 25],
-        },
+        thresholds: {},
         contourLayer: "contours",
         elevationKey: "ele",
         levelKey: "level",
