@@ -44,15 +44,10 @@ map.on("load", async () => {
     tiles: [
       demSource.contourProtocolUrl({
         thresholds: {
-          5: [2560, 12800],
           6: [1280, 6400],
-          7: [640, 3200],
           8: [320, 1600],
-          9: [160, 800],
           10: [80, 400],
-          11: [40, 200],
           12: [20, 100],
-          13: [10, 50],
           14: [5, 25],
         },
         contourLayer: "contours",
