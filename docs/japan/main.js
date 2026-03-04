@@ -98,7 +98,7 @@ map.on("load", async () => {
       trackUserLocation: true,
       showUserHeading: true,
     }),
-    "top-right"
+    "top-right",
   );
   map.addControl(
     new MaplibreExportControl.MaplibreExportControl({
@@ -106,7 +106,7 @@ map.on("load", async () => {
       Crosshair: true,
       northIconOptions: { visibility: "none" },
     }),
-    "top-right"
+    "top-right",
   );
   map.addControl(new GeoJsonExportControl());
   map.addControl(
@@ -114,26 +114,27 @@ map.on("load", async () => {
       apiProxyUrl:
         "https://apiproxymagneticnorth.azurewebsites.net/api/getMagneticHeading",
     }),
-    "top-right"
+    "top-right",
   );
   map.addControl(
     new GPSTrackControl({ isHeartRateWidthEnabled: true }),
-    "top-right"
+    "top-right",
   );
 
   const initialTerrain = query.get("terrain") === "1";
   map.addControl(
     new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
-    "top-right"
+    "top-right",
   );
   const defaultContourInterval = 5;
+  const baseZoom = 13;
   map.addControl(
-    new ContourIntervalControl(demSource, defaultContourInterval),
-    "top-right"
+    new ContourIntervalControl(demSource, defaultContourInterval, baseZoom),
+    "top-right",
   );
   map.addControl(new maplibregl.NavigationControl(), "bottom-right");
   map.addControl(
     new maplibregl.ScaleControl({ unit: "metric" }),
-    "bottom-left"
+    "bottom-left",
   );
 });

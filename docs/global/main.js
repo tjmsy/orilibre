@@ -29,10 +29,10 @@ const map = new maplibregl.Map({
 
 map.on("load", async () => {
   const demSource = new mlcontour.DemSource({
-    url: "https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png",
-    encoding: "numpng",
+    url: "https://tiles.mapterhorn.com/{z}/{x}/{y}.webp",
+    encoding: "terrarium",
     minzoom: 0,
-    maxzoom: 12,
+    maxzoom: 15,
     worker: true,
     cacheSize: 100,
     timeoutMs: 30_000,
@@ -51,18 +51,16 @@ map.on("load", async () => {
         buffer: 1,
       }),
     ],
-    maxzoom: 14,
+    maxzoom: 15,
     attribution:
-      "<a href='https://tiles.gsj.jp/tiles/elev/tiles.html#land' target='_blank'>産総研 シームレス標高タイル(陸域統合DEM)</a>",
+      "<a href='https://mapterhorn.com/attribution' target='_blank'>© Mapterhorn</a>",
   });
 
   map.addSource("terrain", {
     type: "raster-dem",
-    tiles: [
-      "https://gbank.gsj.jp/seamless/elev/terrainRGB/land/{z}/{y}/{x}.png",
-    ],
-    tileSize: 256,
-    maxzoom: 12,
+    tiles: [demSource.sharedDemProtocolUrl],
+    tileSize: 512,
+    maxzoom: 15,
   });
 
   const sky = {
@@ -98,7 +96,7 @@ map.on("load", async () => {
       trackUserLocation: true,
       showUserHeading: true,
     }),
-    "top-right"
+    "top-right",
   );
   map.addControl(
     new MaplibreExportControl.MaplibreExportControl({
@@ -106,7 +104,7 @@ map.on("load", async () => {
       Crosshair: true,
       northIconOptions: { visibility: "none" },
     }),
-    "top-right"
+    "top-right",
   );
   map.addControl(new GeoJsonExportControl());
   map.addControl(
@@ -114,26 +112,27 @@ map.on("load", async () => {
       apiProxyUrl:
         "https://apiproxymagneticnorth.azurewebsites.net/api/getMagneticHeading",
     }),
-    "top-right"
+    "top-right",
   );
   map.addControl(
     new GPSTrackControl({ isHeartRateWidthEnabled: true }),
-    "top-right"
+    "top-right",
   );
 
   const initialTerrain = query.get("terrain") === "1";
   map.addControl(
     new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
-    "top-right"
+    "top-right",
   );
   const defaultContourInterval = 5;
+  const baseZoom = 13;
   map.addControl(
-    new ContourIntervalControl(demSource, defaultContourInterval),
-    "top-right"
+    new ContourIntervalControl(demSource, defaultContourInterval, baseZoom),
+    "top-right",
   );
   map.addControl(new maplibregl.NavigationControl(), "bottom-right");
   map.addControl(
     new maplibregl.ScaleControl({ unit: "metric" }),
-    "bottom-left"
+    "bottom-left",
   );
 });
