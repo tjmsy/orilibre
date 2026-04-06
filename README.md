@@ -14,8 +14,8 @@ Orienteering Maps on MapLibre GL JS
 - 耕作地: [農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)
 
 ### Global Map
-- Contour: [産総研 シームレス標高タイル(陸域統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_land)
-- Others: [OpenFreeMap](https://openfreemap.org/) 
+- Contour: [Mapterhorn](https://mapterhorn.com/attribution/)
+- Other Features: [OpenFreeMap](https://openfreemap.org/) 
 
 ## データライセンス / Data Licensing
 本プロジェクトは、オープンかつ再配布可能な地図データのみを利用しています。  
