@@ -28,9 +28,9 @@ If you print or redistribute maps generated from OriLibre, you must include the 
 参考 / References:  
 - [国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)  
 - [産総研地質調査総合センターウェブサイト利用規約](https://www.gsj.jp/license/license.html)  
-- [GEBCO Data License](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#Licensing)  
 - [農林水産省筆ポリゴン](https://www.maff.go.jp/j/tokei/porigon/)  
-- [OpenFreeMap](https://openfreemap.org/)  
+- [OpenFreeMap](https://openfreemap.org/)
+- [Mapterhorn](https://mapterhorn.com/attribution/)
 
 ## プロジェクトライセンス / Project License
 OriLibre 自体は MIT License の下で提供されています。  
