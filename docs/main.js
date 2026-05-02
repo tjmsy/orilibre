@@ -5,6 +5,7 @@ import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-t
 import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-geojson-export/src/maplibre-gl-geojson-export.js";
 import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval@0.1/src/maplibre-gl-contour-interval.js";
+import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-style-scratchpad/src/StyleScratchpadControl.js";
 
 const query = new URLSearchParams(window.location.search);
 
@@ -87,7 +88,7 @@ map.on("load", async () => {
   await isomizer(map, projectConfigUrl);
 
   map.addControl(new ScaleRatioControl(), "top-left");
-  map.addControl(new maplibregl.FullscreenControl(), "top-right");
+
   map.addControl(
     new maplibregl.GeolocateControl({
       positionOptions: {
@@ -130,6 +131,8 @@ map.on("load", async () => {
     new ContourIntervalControl(demSource, defaultContourInterval, baseZoom),
     "top-right",
   );
+  map.addControl(new StyleScratchpadControl(), "top-right");
+
   map.addControl(new maplibregl.NavigationControl(), "bottom-right");
   map.addControl(
     new maplibregl.ScaleControl({ unit: "metric" }),
