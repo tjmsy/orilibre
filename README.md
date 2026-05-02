@@ -14,8 +14,8 @@ Orienteering Maps on MapLibre GL JS
 - 耕作地: [農林水産省筆ポリゴン(農林水産省)](https://github.com/optgeo/ag?tab=readme-ov-file#%E5%87%BA%E5%85%B8)
 
 ### Global Map
-- Contour: [産総研 シームレス標高タイル(陸域統合DEM)](https://tiles.gsj.jp/tiles/elev/tiles.html#h_land)
-- Others: [OpenFreeMap](https://openfreemap.org/) 
+- Contour: [Mapterhorn](https://mapterhorn.com/attribution/)
+- Other Features: [OpenFreeMap](https://openfreemap.org/) 
 
 ## データライセンス / Data Licensing
 本プロジェクトは、オープンかつ再配布可能な地図データのみを利用しています。  
@@ -28,9 +28,9 @@ If you print or redistribute maps generated from OriLibre, you must include the 
 参考 / References:  
 - [国土地理院コンテンツ利用規約](https://www.gsi.go.jp/kikakuchousei/kikakuchousei40182.html)  
 - [産総研地質調査総合センターウェブサイト利用規約](https://www.gsj.jp/license/license.html)  
-- [GEBCO Data License](https://www.gebco.net/data_and_products/gridded_bathymetry_data/#Licensing)  
 - [農林水産省筆ポリゴン](https://www.maff.go.jp/j/tokei/porigon/)  
-- [OpenFreeMap](https://openfreemap.org/)  
+- [OpenFreeMap](https://openfreemap.org/)
+- [Mapterhorn](https://mapterhorn.com/attribution/)
 
 ## プロジェクトライセンス / Project License
 OriLibre 自体は MIT License の下で提供されています。  
