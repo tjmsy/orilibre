@@ -133,9 +133,9 @@ map.on("load", async () => {
   );
   map.addControl(new StyleScratchpadControl(), "top-right");
 
-  map.addControl(new maplibregl.NavigationControl(), "bottom-right");
   map.addControl(
     new maplibregl.ScaleControl({ unit: "metric" }),
     "bottom-left",
   );
+  map.addControl(new maplibregl.NavigationControl(), "bottom-left");
 });
