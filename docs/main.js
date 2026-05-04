@@ -11,7 +11,7 @@ const query = new URLSearchParams(window.location.search);
 
 const projectConfigUrl =
   query.get("project") ??
-  "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.3/projects/global/project-config.yml";
+  "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.4/projects/global/project-config.yml";
 
 const map = new maplibregl.Map({
   container: "map",
