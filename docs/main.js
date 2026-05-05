@@ -60,6 +60,7 @@ map.on("load", async () => {
 
   map.addSource("terrain", {
     type: "raster-dem",
+    encoding: "terrarium",
     tiles: [demSource.sharedDemProtocolUrl],
     tileSize: 512,
     maxzoom: 15,
