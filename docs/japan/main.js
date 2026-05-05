@@ -110,7 +110,7 @@ map.on("load", async () => {
 
   map.addControl(new GeoJsonExportControl(), "top-left");
 
-  map.addControl(new DesignSetSwitcherControl(), "top-left");
+  map.addControl(new DesignSetSwitcherControl({defaultDesignSet: "hybrid-japan",}), "top-left");
 
   // -------------------------
   // Controls: top-right
