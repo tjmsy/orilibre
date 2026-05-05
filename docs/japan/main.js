@@ -2,10 +2,10 @@ import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer
 import { ScaleRatioControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-scale-ratio@latest/src/maplibre-gl-scale-ratio.js";
 import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-magnetic-north/src/maplibre-gl-magnetic-north.js";
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
-import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-geojson-export/src/maplibre-gl-geojson-export.js";
+import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-geojson-export@0.1/src/maplibre-gl-geojson-export.js";
 import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval@0.1/src/maplibre-gl-contour-interval.js";
-import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-style-scratchpad/src/StyleScratchpadControl.js";
+import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-style-scratchpad@0.1/src/StyleScratchpadControl.js";
 import DesignSetSwitcherControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils/src/orilibre-design-set-switcher/DesignSetSwitcherControl.js";
 
 const query = new URLSearchParams(window.location.search);
@@ -95,13 +95,17 @@ map.on("load", async () => {
   // -------------------------
   // Controls: top-left
   // -------------------------
+
   map.addControl(new ScaleRatioControl(), "top-left");
 
-  const initialTerrain = query.get("terrain") === "1";
   map.addControl(
-    new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
+    new DesignSetSwitcherControl({ defaultDesignSet: "hybrid-japan" }),
     "top-left",
   );
+
+  map.addControl(new GeoJsonExportControl(), "top-left");
+
+  map.addControl(new StyleScratchpadControl(), "top-left");
 
   const defaultContourInterval = 5;
   const baseZoom = 13;
@@ -110,10 +114,9 @@ map.on("load", async () => {
     "top-left",
   );
 
-  map.addControl(new GeoJsonExportControl(), "top-left");
-
+  const initialTerrain = query.get("terrain") === "1";
   map.addControl(
-    new DesignSetSwitcherControl({ defaultDesignSet: "hybrid-japan" }),
+    new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
     "top-left",
   );
 
@@ -133,6 +136,15 @@ map.on("load", async () => {
   );
 
   map.addControl(
+    new MaplibreExportControl.MaplibreExportControl({
+      PrintableArea: true,
+      Crosshair: true,
+      northIconOptions: { visibility: "none" },
+    }),
+    "top-right",
+  );
+
+  map.addControl(
     new GPSTrackControl({ isHeartRateWidthEnabled: true }),
     "top-right",
   );
@@ -140,17 +152,6 @@ map.on("load", async () => {
   // -------------------------
   // Controls: bottom-left
   // -------------------------
-
-  map.addControl(new StyleScratchpadControl(), "bottom-left");
-
-  map.addControl(
-    new MaplibreExportControl.MaplibreExportControl({
-      PrintableArea: true,
-      Crosshair: true,
-      northIconOptions: { visibility: "none" },
-    }),
-    "bottom-left",
-  );
 
   // -------------------------
   // Controls: bottom-right
