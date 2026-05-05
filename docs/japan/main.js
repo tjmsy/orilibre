@@ -88,7 +88,9 @@ map.on("load", async () => {
   };
   map.setSky(sky);
 
-  await isomizer(map, projectConfigUrl);
+  map.once("idle", async () => {
+    await isomizer(map, projectConfigUrl);
+  });
 
   // -------------------------
   // Controls: top-left
@@ -110,7 +112,10 @@ map.on("load", async () => {
 
   map.addControl(new GeoJsonExportControl(), "top-left");
 
-  map.addControl(new DesignSetSwitcherControl({defaultDesignSet: "hybrid-japan",}), "top-left");
+  map.addControl(
+    new DesignSetSwitcherControl({ defaultDesignSet: "hybrid-japan" }),
+    "top-left",
+  );
 
   // -------------------------
   // Controls: top-right

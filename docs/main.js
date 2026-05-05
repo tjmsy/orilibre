@@ -86,7 +86,9 @@ map.on("load", async () => {
   };
   map.setSky(sky);
 
-  await isomizer(map, projectConfigUrl);
+  map.once("idle", async () => {
+    await isomizer(map, projectConfigUrl);
+  });
 
   // -------------------------
   // Controls: top-left
