@@ -6,6 +6,7 @@ import GeoJsonExportControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-
 import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terrain-3d-toggle@0.1/src/maplibre-gl-terrain-3d-toggle.js";
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval@0.1/src/maplibre-gl-contour-interval.js";
 import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-style-scratchpad/src/StyleScratchpadControl.js";
+import DesignSetSwitcherControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils/src/orilibre-design-set-switcher/DesignSetSwitcherControl.js";
 
 const query = new URLSearchParams(window.location.search);
 
