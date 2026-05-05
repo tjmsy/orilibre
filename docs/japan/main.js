@@ -89,7 +89,29 @@ map.on("load", async () => {
 
   await isomizer(map, projectConfigUrl);
 
+  // -------------------------
+  // Controls: top-left
+  // -------------------------
   map.addControl(new ScaleRatioControl(), "top-left");
+
+  const initialTerrain = query.get("terrain") === "1";
+  map.addControl(
+    new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
+    "top-left",
+  );
+
+  const defaultContourInterval = 5;
+  const baseZoom = 13;
+  map.addControl(
+    new ContourIntervalControl(demSource, defaultContourInterval, baseZoom),
+    "top-left",
+  );
+
+  map.addControl(new GeoJsonExportControl(), "top-left");
+
+  // -------------------------
+  // Controls: top-right
+  // -------------------------
 
   map.addControl(
     new maplibregl.GeolocateControl({
@@ -101,43 +123,42 @@ map.on("load", async () => {
     }),
     "top-right",
   );
+
+  map.addControl(
+    new GPSTrackControl({ isHeartRateWidthEnabled: true }),
+    "top-right",
+  );
+
+  // -------------------------
+  // Controls: bottom-left
+  // -------------------------
+
+  map.addControl(new StyleScratchpadControl(), "bottom-left");
+
   map.addControl(
     new MaplibreExportControl.MaplibreExportControl({
       PrintableArea: true,
       Crosshair: true,
       northIconOptions: { visibility: "none" },
     }),
-    "top-right",
+    "bottom-left",
   );
-  map.addControl(new GeoJsonExportControl());
+
+  // -------------------------
+  // Controls: bottom-right
+  // -------------------------
+  map.addControl(
+    new maplibregl.ScaleControl({ unit: "metric" }),
+    "bottom-right",
+  );
+
+  map.addControl(new maplibregl.NavigationControl(), "bottom-right");
+
   map.addControl(
     new MagneticNorthControl({
       apiProxyUrl:
         "https://apiproxymagneticnorth.azurewebsites.net/api/getMagneticHeading",
     }),
-    "top-right",
+    "bottom-right",
   );
-  map.addControl(
-    new GPSTrackControl({ isHeartRateWidthEnabled: true }),
-    "top-right",
-  );
-
-  const initialTerrain = query.get("terrain") === "1";
-  map.addControl(
-    new Terrain3dToggle({ sourceName: "terrain", initialTerrain }),
-    "top-right",
-  );
-  const defaultContourInterval = 5;
-  const baseZoom = 13;
-  map.addControl(
-    new ContourIntervalControl(demSource, defaultContourInterval, baseZoom),
-    "top-right",
-  );
-  map.addControl(new StyleScratchpadControl(), "top-right");
-
-  map.addControl(
-    new maplibregl.ScaleControl({ unit: "metric" }),
-    "bottom-left",
-  );
-  map.addControl(new maplibregl.NavigationControl(), "bottom-left");
 });
