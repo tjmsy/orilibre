@@ -24,7 +24,7 @@ const map = new maplibregl.Map({
   },
   center: [139.3127, 35.8855],
   zoom: 15,
-  maxPitch: 80,
+  maxPitch: 90,
   hash: true,
   localIdeographFontFamily: "sans-serif",
 });
