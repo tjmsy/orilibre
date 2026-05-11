@@ -1,4 +1,4 @@
-import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer@0.4/src/isomizer.js";
+import { isomizer } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-isomizer@0.5/src/isomizer.js";
 import { ScaleRatioControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-scale-ratio@latest/src/maplibre-gl-scale-ratio.js";
 import { MagneticNorthControl } from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-magnetic-north/src/maplibre-gl-magnetic-north.js";
 import GPSTrackControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-gps-track/src/maplibre-gl-gps-track.js";
@@ -12,7 +12,7 @@ const query = new URLSearchParams(window.location.search);
 
 const projectConfigUrl =
   query.get("project") ??
-  "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.4/projects/global/project-config.yml";
+  "https://cdn.jsdelivr.net/gh/tjmsy/isomizer-projectfiles@0.5/projects/global/project-config.yml";
 
 const map = new maplibregl.Map({
   container: "map",
