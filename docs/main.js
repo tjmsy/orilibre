@@ -7,7 +7,7 @@ import Terrain3dToggle from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-terra
 import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-contour-interval@0.1/src/maplibre-gl-contour-interval.js";
 import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-style-scratchpad@0.1/src/StyleScratchpadControl.js";
 import DesignSetSwitcherControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.2/src/orilibre-design-set-switcher/DesignSetSwitcherControl.js";
-// import FeatureInspectorControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.2/src/feature-inspector/FeatureInspectorControl.js";
+import FeatureInspectorControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils/src/feature-inspector/FeatureInspectorControl.js";
 
 const query = new URLSearchParams(window.location.search);
 
@@ -107,7 +107,7 @@ map.on("load", async () => {
 
   map.addControl(new StyleScratchpadControl(), "top-left");
 
-//  map.addControl(new FeatureInspectorControl(), "top-left");
+  map.addControl(new FeatureInspectorControl(), "top-left");
 
   const defaultContourInterval = 5;
   const baseZoom = 13;
