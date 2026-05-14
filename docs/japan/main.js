@@ -153,6 +153,7 @@ map.on("load", async () => {
         if (searchMode === "local") {
           request += `&viewbox=${west},${north},${east},${south}&bounded=1`;
         } else {
+          request += `&viewbox=122.9,45.6,154,20.4&bounded=1`
         }
 
         const response = await fetch(request);
