@@ -8,6 +8,7 @@ import ContourIntervalControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-g
 import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-gl-style-scratchpad@0.1/src/StyleScratchpadControl.js";
 import DesignSetSwitcherControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.3/src/orilibre-design-set-switcher/DesignSetSwitcherControl.js";
 import FeatureInspectorControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.3/src/feature-inspector/FeatureInspectorControl.js";
+import ExtendedGeocoderControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.3/src/extended-geocoder/ExtendedGeocoderControl.js";
 
 const query = new URLSearchParams(window.location.search);
 
@@ -40,6 +41,7 @@ map.on("load", async () => {
     cacheSize: 100,
     timeoutMs: 30_000,
   });
+
   demSource.setupMaplibre(maplibregl);
 
   map.addSource("contour-source", {
@@ -101,7 +103,7 @@ map.on("load", async () => {
   map.addControl(new ScaleRatioControl(), "top-left");
 
   const switcher = new DesignSetSwitcherControl({
-    defaultDesignSet: "ofm",
+    defaultDesignSet: "hybrid-japan",
   });
 
   map.addControl(switcher, "top-left");
@@ -128,6 +130,82 @@ map.on("load", async () => {
   // -------------------------
   // Controls: top-right
   // -------------------------
+
+  const geocoderApi = {
+    forwardGeocode: async (config) => {
+      const features = [];
+
+      try {
+        const bounds = map.getBounds();
+
+        const west = bounds.getWest();
+        const south = bounds.getSouth();
+        const east = bounds.getEast();
+        const north = bounds.getNorth();
+
+        let request =
+          `https://nominatim.openstreetmap.org/search?` +
+          `q=${config.query}` +
+          `&format=geojson` +
+          `&polygon_geojson=1` +
+          `&addressdetails=1`;
+
+        if (searchMode === "local") {
+          request += `&viewbox=${west},${north},${east},${south}&bounded=1`;
+        } else {
+        }
+
+        const response = await fetch(request);
+        const geojson = await response.json();
+
+        for (const feature of geojson.features) {
+          const center = feature.bbox
+            ? [
+                (feature.bbox[0] + feature.bbox[2]) / 2,
+                (feature.bbox[1] + feature.bbox[3]) / 2,
+              ]
+            : feature.geometry.coordinates;
+          const point = {
+            type: "Feature",
+            geometry: {
+              type: "Point",
+              coordinates: center,
+            },
+            place_name: feature.properties.display_name,
+            properties: feature.properties,
+            text: feature.properties.display_name,
+            place_type: ["place"],
+            center,
+          };
+          features.push(point);
+        }
+      } catch (e) {
+        console.error(`Failed to forwardGeocode with error: ${e}`);
+      }
+
+      return {
+        features,
+      };
+    },
+  };
+
+  let searchMode = "global";
+
+  const geocoder = new MaplibreGeocoder(geocoderApi, {
+    maplibregl,
+    limit: 10,
+    zoom: 15,
+  });
+
+  const control = new ExtendedGeocoderControl({
+    geocoder,
+    getSearchMode: () => searchMode,
+    setSearchMode: (mode) => {
+      searchMode = mode;
+    },
+  });
+
+  map.addControl(control, "top-right");
 
   map.addControl(
     new maplibregl.GeolocateControl({
