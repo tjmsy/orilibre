@@ -9,7 +9,7 @@ import StyleScratchpadControl from "https://cdn.jsdelivr.net/gh/tjmsy/maplibre-g
 import DesignSetSwitcherControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.4/src/orilibre-design-set-switcher/DesignSetSwitcherControl.js";
 import FeatureInspectorControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.4/src/feature-inspector/FeatureInspectorControl.js";
 import ExtendedGeocoderControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.4/src/extended-geocoder/ExtendedGeocoderControl.js";
-import DirectionsWrapperControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.4/src/direction-wrapper/DirectionsWrapperControl.js";
+import DirectionsWrapperControl from "https://cdn.jsdelivr.net/gh/tjmsy/orilibre-utils@0.4/src/direction-wrapper/DirectionsWrapperControlOrs.js";
 
 const query = new URLSearchParams(window.location.search);
 
@@ -212,10 +212,11 @@ map.on("load", async () => {
 
   map.addControl(
     new DirectionsWrapperControl({
-      profile: "walking",
-      api: "https://directions-gateway.tjmsy.workers.dev",
+      profile: "foot-hiking",
+      api: "https://directions-gateway-ors.tjmsy.workers.dev",
       requestOptions: {
         alternatives: true,
+        geometries: "geojson",
       },
     }),
     "top-right",
